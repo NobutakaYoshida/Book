@@ -32,7 +32,7 @@ public class BookController {
 	
 	@RequestMapping("")
 	public String index() {
-		return "book";
+		return "mock";
 	}
 	
 	@RequestMapping("/search")
