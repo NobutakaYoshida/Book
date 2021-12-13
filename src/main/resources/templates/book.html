@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>タイトル</title>
+</head>
+<body>
+	<form th:action="@{/book/search}" method="post">
+		<input type="text" name="title">
+		<button>検索</button>
+	</form>
+	<hr>
+	<form th:action="@{/book/insert}" method="post">
+		タイトル<input type="text" name="title"><br>
+		著者<input type="text" name="author"><br>
+		出版社<input type="text" name="publisher"><br>
+		ページ数<input type="text" name="pages"><br>
+		価格<input type="text" name="price"><br>
+		読了日<input type="date" name="finishedDate"><br>
+		SNS投稿<input type="radio" name="snsPush" value="1">投稿済み
+		<input type="radio" name="snsPush" value="2">未投稿<br>
+		<button>登録</button>
+	</form>
+	<hr>
+	<table border="1">
+		<tr th:each="book:${bookList}">
+			<td th:text="${book.id}"></td>
+			<td th:text="${book.title}"></td>
+			<td th:text="${book.author}"></td>
+			<td th:text="${book.publisher}"></td>
+			<td th:text="${book.pages}"></td>
+			<td th:text="${book.price}"></td>
+			<td th:text="${book.finishedDate}"></td>
+			<td th:text="${book.snsPush}"></td>
+		</tr>
+	</table>
+	</span>
+</body>
+</html>
