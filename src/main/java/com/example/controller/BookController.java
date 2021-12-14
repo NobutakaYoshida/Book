@@ -49,7 +49,7 @@ public class BookController {
 	 */
 	@RequestMapping("/login")
 	public String login() {
-		return "login";
+		return "entry/login";
 	}
 	
 	
