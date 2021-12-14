@@ -30,10 +30,29 @@ public class BookController {
 		return new BookInsertForm();
 	}
 	
+	
+	/**
+	 * トップページを表示
+	 * 
+	 * @return
+	 */
 	@RequestMapping("")
 	public String index() {
 		return "mock";
 	}
+	
+	
+	/**
+	 * 管理者ログインページへ
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/login")
+	public String login() {
+		return "login";
+	}
+	
+	
 	
 	@RequestMapping("/search")
 	public String search(BookSearchForm bookSearchForm, Model model) {
