@@ -38,7 +38,7 @@ public class BookController {
 	 */
 	@RequestMapping("")
 	public String index() {
-		return "mock";
+		return "userview/home";
 	}
 	
 	
@@ -49,10 +49,17 @@ public class BookController {
 	 */
 	@RequestMapping("/login")
 	public String login() {
-		return "login";
+		return "entry/login";
 	}
 	
 	
+	@RequestMapping("/insert")
+	public String insert(BookInsertForm bookInsertForm, Model model) {
+		bookRepository.insert(bookInsertForm);
+		List<Book> bookList = bookRepository.findAll();
+		model.addAttribute("bookList", bookList);
+		return "book";
+	}
 	
 	@RequestMapping("/search")
 	public String search(BookSearchForm bookSearchForm, Model model) {
@@ -66,11 +73,4 @@ public class BookController {
 		return "book";
 	}
 	
-	@RequestMapping("/insert")
-	public String insert(BookInsertForm bookInsertForm, Model model) {
-		bookRepository.insert(bookInsertForm);
-		List<Book> bookList = bookRepository.findAll();
-		model.addAttribute("bookList", bookList);
-		return "book";
-	}
 }
