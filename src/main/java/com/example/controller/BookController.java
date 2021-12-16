@@ -104,4 +104,13 @@ public class BookController {
 		return "googleBooksApi";
 	}
 	
+	
+	/**
+	 * メールを送るページへ遷移
+	 */
+	@RequestMapping("/sendEmailPage")
+	public String sendEmailPage() {
+		return "userview/sendEmailPage";
+	}
+	
 }
