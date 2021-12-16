@@ -58,7 +58,7 @@
           </ul>
         </li>
         
-        <!-- ログイン/ログアウト -->
+        <!-- ログイン/ログアウト状況 -->
         <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li>
@@ -74,7 +74,7 @@
       </ul>
       
       <!-- 検索欄 -->
-      <form class="d-flex">
+      <form class="d-flex" th:action="@{/book/search}" method="post">
         <!-- 検索フォーム -->
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <!-- 検索ボタン -->

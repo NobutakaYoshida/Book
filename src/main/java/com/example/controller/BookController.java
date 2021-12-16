@@ -52,7 +52,21 @@ public class BookController {
 		return "entry/login";
 	}
 	
+	/**
+	 * ì«ÇÒÇæñ{Çìoò^Ç∑ÇÈâÊñ Ç÷ëJà⁄
+	 */
+	@RequestMapping("/insert-page")
+	public String insertPage() {
+		return "book";
+	}
 	
+	/**
+	 * ì«ÇÒÇæñ{Çìoò^
+	 * 
+	 * @param bookInsertForm
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/insert")
 	public String insert(BookInsertForm bookInsertForm, Model model) {
 		bookRepository.insert(bookInsertForm);
@@ -61,6 +75,14 @@ public class BookController {
 		return "book";
 	}
 	
+	
+	/**
+	 * ì«ÇÒÇæñ{Çåüçı
+	 * 
+	 * @param bookSearchForm
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/search")
 	public String search(BookSearchForm bookSearchForm, Model model) {
 		List<Book> bookList = bookRepository.findAll();
@@ -71,6 +93,15 @@ public class BookController {
 		}
 		model.addAttribute("bookList", bookList);
 		return "book";
+	}
+	
+	
+	/**
+	 * Google Books Api ÉyÅ[ÉWÇ÷ëJà⁄
+	 */
+	@RequestMapping("/googleBooksApi")
+	public String googleBooksApi() {
+		return "googleBooksApi";
 	}
 	
 }
