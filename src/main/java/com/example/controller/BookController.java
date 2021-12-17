@@ -57,7 +57,7 @@ public class BookController {
 	 */
 	@RequestMapping("/insert-page")
 	public String insertPage() {
-		return "book";
+		return "insertPage";
 	}
 	
 	/**
@@ -72,7 +72,7 @@ public class BookController {
 		bookRepository.insert(bookInsertForm);
 		List<Book> bookList = bookRepository.findAll();
 		model.addAttribute("bookList", bookList);
-		return "book";
+		return "insertPage";
 	}
 	
 	
@@ -102,6 +102,10 @@ public class BookController {
 	@RequestMapping("/googleBooksApi")
 	public String googleBooksApi() {
 		return "googleBooksApi";
+		
+		
+//		index.html‚ğ‚·ˆ×‚É•ÏX
+//		return "index";
 	}
 	
 	
