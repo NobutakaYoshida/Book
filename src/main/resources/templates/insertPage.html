@@ -106,7 +106,7 @@
             <!-- 出版社 -->
             <div class="col-sm-6">
             	<label for="exampleDataList" class="form-label">出版社</label>
-					<input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="publisher">
+					<input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="publisher" name="publisher">
 						<datalist id="datalistOptions">
   							<option value="KADOKAWA">
   							<option value="新潮社">
@@ -157,8 +157,8 @@
 			
 			<!-- 本の形式 -->
             <div class="col-sm-4">
-            	<label for="style" class="form-label">形式</label>
-            	<select class="form-select" aria-label="Default select example" id="style" name="style">
+            	<label for="bookStyle" class="form-label">形式</label>
+            	<select class="form-select" aria-label="Default select example" id="bookStyle" name="bookStyle">
   					<option selected>book style</option>
   					<option value="1">単行本</option>
   					<option value="2">新書</option>
@@ -190,18 +190,25 @@
   					<option value="5">歴史</option>
   					<option value="6">マネジメント</option>
   					<option value="7">語学</option>
+  					<option value="8">文学</option>
 				</select>
 			</div>
 			
 			<!-- 写真 -->
 			<div class="col-sm-12" style="margin-bottom: 50px;">
-            	<label for="picture" class="form-label">写真</label>
- 	 				<input class="form-control" type="file" id="picture" name="picture">
+            	<label for="image" class="form-label">写真</label>
+ 	 				<input class="form-control" type="file" id="image" name="image">
 			</div>
 			
-			<br>
-
-         	<button class="w-100 btn btn-primary btn-lg" type="submit" style="margin-bottom: 100px;">I read this book.</button>
+			<!-- コメント -->
+			<div class="col-sm-12">
+				<div class="mb-3">
+  					<label for="exampleFormControlTextarea1" class="form-label">コメント</label>
+  					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="comment"></textarea>
+				</div>
+			</div>
+			
+         	<button class="w-100 btn btn-primary btn-lg" type="submit" style="margin-top: 50px; margin-bottom: 100px;">I read this book.</button>
         	
         	</div>
         

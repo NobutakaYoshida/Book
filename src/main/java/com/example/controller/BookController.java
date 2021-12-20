@@ -37,7 +37,9 @@ public class BookController {
 	 * @return
 	 */
 	@RequestMapping("")
-	public String index() {
+	public String index(Model model) {
+		List<Book> bookList = bookRepository.findAll();
+		model.addAttribute("bookList", bookList);
 		return "userview/home";
 	}
 	
