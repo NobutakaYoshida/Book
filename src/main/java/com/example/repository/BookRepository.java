@@ -29,11 +29,16 @@ public class BookRepository {
 		book.setId(rs.getInt("id"));
 		book.setTitle(rs.getString("title"));
 		book.setAuthor(rs.getString("author"));
+		book.setFinishedDate(rs.getDate("finished_date"));
 		book.setPublisher(rs.getString("publisher"));
 		book.setPages(rs.getInt("pages"));
 		book.setPrice(rs.getInt("price"));
-		book.setFinishedDate(rs.getDate("finished_date"));
 		book.setSnsPush(rs.getInt("sns_push"));
+		book.setBookStyle(rs.getInt("book_style"));
+		book.setBigGenre(rs.getInt("big_genre"));
+		book.setSmallGenre(rs.getInt("small_genre"));
+		book.setImage(rs.getString("image"));
+		book.setComment(rs.getString("comment"));
 		return book;
 	};
 	
