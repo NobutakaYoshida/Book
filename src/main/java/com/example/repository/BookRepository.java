@@ -58,13 +58,33 @@ public class BookRepository {
 	public void insert(BookInsertForm bookInsertForm) {
 		String title = bookInsertForm.getTitle();
 		String author = bookInsertForm.getAuthor();
+		Date finishedDate = bookInsertForm.getFinishedDate();
 		String publisher = bookInsertForm.getPublisher();
 		Integer pages = bookInsertForm.getPages();
 		Integer price = bookInsertForm.getPrice();
-		Date finishedDate = bookInsertForm.getFinishedDate();
 		Integer snsPush = bookInsertForm.getSnsPush();
-		String insertSql = "INSERT INTO books (title, author, publisher, pages, price, finished_date, sns_push) VALUES (:title, :author, :publisher, :pages, :price, :finishedDate, :snsPush)";
-		SqlParameterSource param = new MapSqlParameterSource().addValue("title", title).addValue("author", author).addValue("publisher", publisher).addValue("pages", pages).addValue("price", price).addValue("finishedDate", finishedDate).addValue("snsPush", snsPush);
+		Integer bookStyle = bookInsertForm.getBookStyle();
+		Integer bigGenre = bookInsertForm.getBigGenre();
+		Integer smallGenre = bookInsertForm.getSmallGenre();
+		String image = bookInsertForm.getImage();
+		String comment = bookInsertForm.getComment();
+		
+		String insertSql = "INSERT INTO books (title, author, finished_date, publisher, pages, price, sns_push, book_style, big_genre, small_genre, image, comment)"
+				+ " VALUES (:title, :author, :finishedDate, :publisher, :pages, :price, :snsPush, :bookStyle, :bigGenre, :smallGenre, :image, :comment)";
+		SqlParameterSource param = new MapSqlParameterSource()
+				.addValue("title", title).addValue("author", author)
+				.addValue("finishedDate", finishedDate).addValue("publisher", publisher)
+				.addValue("pages", pages).addValue("price", price)
+				.addValue("snsPush", snsPush).addValue("bookStyle", bookStyle)
+				.addValue("bigGenre", bigGenre).addValue("smallGenre", smallGenre)
+				.addValue("image", image).addValue("comment", comment);
 		template.update(insertSql, param);
+	}
+	
+	public List<Book> findById(Integer id){
+		String sql = "SELECT * FROM books WHERE id = :id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+		List<Book> bookList = template.query(sql, param, BOOK_ROW_MAPPER);
+		return bookList;
 	}
 }
