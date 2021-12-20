@@ -40,6 +40,7 @@ public class BookController {
 	public String index(Model model) {
 		List<Book> bookList = bookRepository.findAll();
 		model.addAttribute("bookList", bookList);
+		System.out.println(bookList);
 		return "userview/home";
 	}
 	
@@ -59,7 +60,7 @@ public class BookController {
 	 */
 	@RequestMapping("/insert-page")
 	public String insertPage() {
-		return "insertPage";
+		return "userview/insertPage";
 	}
 	
 	/**
@@ -74,7 +75,12 @@ public class BookController {
 		bookRepository.insert(bookInsertForm);
 		List<Book> bookList = bookRepository.findAll();
 		model.addAttribute("bookList", bookList);
-		return "insertPage";
+		return "redirect:/book/ok";
+	}
+	
+	@RequestMapping("/ok")
+	public String ok() {
+		return "userview/ok";
 	}
 	
 	
@@ -117,6 +123,17 @@ public class BookController {
 	@RequestMapping("/sendEmailPage")
 	public String sendEmailPage() {
 		return "userview/sendEmailPage";
+	}
+	
+	
+	/**
+	 * 本の詳細ページへ遷移
+	 */
+	@RequestMapping("/detail")
+	public String detail(Integer id, Model model) {
+		List<Book> bookList = bookRepository.findById(id);
+		model.addAttribute("bookList", bookList);
+		return "userview/bookDetail";
 	}
 	
 }

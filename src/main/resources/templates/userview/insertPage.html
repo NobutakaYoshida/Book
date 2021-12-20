@@ -65,7 +65,7 @@
     
     <!-- フォーム部分 -->
     <h4 class="mb-3">書籍情報</h4>
-    	<form class="needs-validation" novalidate>
+    	<form class="needs-validation" novalidate th:action="@{/book/insert}" method="post">
         	<!-- フォーム１つ１つの高さ -->
         	<div class="row g-3">
             
@@ -146,11 +146,11 @@
             <div class="col-sm-4">
             	<label for="snsPush" class="form-label">SNS投稿</label><br>
   					<div class="form-check form-check-inline">
-  						<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" checked>
+  						<input class="form-check-input" type="radio" name="snsPush" id="inlineRadio1" value="1" checked>
   						<label class="form-check-label" for="inlineRadio1">未投稿</label>
 					</div>
 					<div class="form-check form-check-inline">
-  						<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2">
+  						<input class="form-check-input" type="radio" name="snsPush" id="inlineRadio2" value="2">
   						<label class="form-check-label" for="inlineRadio2">投稿済</label>
 					</div>
 			</div>
@@ -208,6 +208,7 @@
 				</div>
 			</div>
 			
+			<input type="hidden" name="id">
          	<button class="w-100 btn btn-primary btn-lg" type="submit" style="margin-top: 50px; margin-bottom: 100px;">I read this book.</button>
         	
         	</div>
