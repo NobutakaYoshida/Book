@@ -1,10 +1,168 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>タイトル</title>
-</head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.79.0">
+    <title>読書の記録</title>
+
+    <link rel="canonical" href="https://getbootstrap.jp/docs/5.0/examples/album/">
+
+    
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+  </head>
 <body>
-ページコンテンツ
-</body>
+
+<header>
+	<nav th:insert="include/header::header"></nav>
+</header>
+
+<main>
+
+<div class="row d-flex justify-content-center my-5" th:each="book:${bookList}">
+		
+	<!-- 左側画像エリア -->
+	<div class="col-sm-3">
+		<img th:src="@{'/image/' + ${book.image}}" width="100%">
+	</div>
+		
+	<!-- 右側のタイトル・コメントエリア -->
+	<div class="col-sm-6 p-5">
+		<h2 th:text="${book.title}" style="white-space: pre-wrap;">商品名</h2>
+		<hr />
+		<div th:text="${book.comment}" style="white-space: pre-wrap;">商品説明文を追加</div>
+	</div>
+	
+</div>
+
+
+<div style="box-sizing: border-box; margin: 50px" th:each="book:${bookList}">
+	<hr aria-hidden="true" class="a-divider-normal" />
+		<div style="overflow:hidden;">
+			<div id="prodDetails" class="a-section">
+				<div class="a-row a-spacing-top-base">
+					<div class="a-column a-span6">
+						<div class="a-row a-spacing-base">
+							<div aria-live="polite" class="a-row a-expander-container a-expander-extend-container">
+								<div class="a-row">
+									<div class="a-column a-span6">
+										<h1 class="a-size-medium a-spacing-small">詳細情報</h1>
+									</div>
+								</div>
+								
+								<!-- 下側詳細エリア・左側 -->
+								<div aria-expanded="true" class="a-expander-content a-expander-extend-content">
+									<div aria-live="polite" class="a-row a-expander-container a-expander-inline-container">
+										<div aria-expanded="true" class="a-expander-content a-expander-section-content a-section-expander-inner">
+											<table id="productDetails_techSpec_section_1" class="a-keyvalue prodDetTable" role="presentation">
+												<tbody>
+													<tr>
+														<th class="a-color-secondary a-size-base prodDetSectionEntry"> 著者 </th>
+															<td class="a-size-base prodDetAttrValue" th:text="${book.author}"> &lrm;Siroca(シロカ) </td>
+													</tr>
+													<tr>
+														<th class="a-color-secondary a-size-base prodDetSectionEntry"> 読了日 </th>
+															<td class="a-size-base prodDetAttrValue" th:text="${#dates.format(book.finishedDate,'yyyy年MM月dd日')}"> &lrm;Siroca(シロカ) </td>
+													</tr>
+													<tr>
+														<th class="a-color-secondary a-size-base prodDetSectionEntry"> 出版元 </th>
+															<td class="a-size-base prodDetAttrValue" th:text="${book.publisher}"> &lrm;Siroca(シロカ) </td>
+													</tr>
+													<tr>
+														<th class="a-color-secondary a-size-base prodDetSectionEntry"> 価格 </th>
+															<td class="a-size-base prodDetAttrValue" th:text="${book.pages} + ' 円'"> &lrm;Siroca(シロカ) </td>
+													</tr>
+													<tr>
+														<th class="a-color-secondary a-size-base prodDetSectionEntry"> ページ数 </th>
+															<td class="a-size-base prodDetAttrValue" th:text="${book.price} + ' ページ'"> &lrm;Siroca(シロカ) </td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="a-column a-span6">
+						</div>
+						
+						<div class="a-row">
+						</div>
+									
+					</div>
+					
+					<div class="a-column a-span6 a-span-last">
+						<div class="a-row a-spacing-base">
+							<div id="productDetails_db_sections" class="a-section">
+								<h1 class="a-size-medium a-spacing-small secHeader">登録情報</h1>
+									
+									<!-- 下側詳細エリア・右側 -->
+									<div class="a-section table-padding">
+										<table id="productDetails_detailBullets_sections1" class="a-keyvalue prodDetTable" role="presentation">
+											<tbody>
+												<tr>
+													<th class="a-color-secondary a-size-base prodDetSectionEntry"> 本の形式 </th>
+														<td class="a-size-base prodDetAttrValue" th:text="${bookStyle}"> B09BTTPTVD </td>
+												</tr>
+												<tr>
+													<th class="a-color-secondary a-size-base prodDetSectionEntry"> 大ジャンル </th>
+														<td class="a-size-base prodDetAttrValue" th:text="${bigGenre}"> B09BTTPTVD </td>
+												</tr>
+												<tr>
+													<th class="a-color-secondary a-size-base prodDetSectionEntry"> 小ジャンル </th>
+														<td class="a-size-base prodDetAttrValue" th:text="${smallGenre}"> B09BTTPTVD </td>
+												</tr>
+												<tr>
+													<th class="a-color-secondary a-size-base prodDetSectionEntry"> SNS投稿状況 </th>
+														<td class="a-size-base prodDetAttrValue" th:text="${snsPush}"> B09BTTPTVD </td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									
+							</div>
+						</div>
+					</div>
+					
+									
+				</div>
+			</div>
+		</div>
+		
+</div>
+
+
+</main>
+
+
+<footer>
+	<nav th:insert="include/footer::footer"></nav>
+</footer>
+
+    <script th:src="@{/js/bootstrap.js}" src="/js/bootstrap.bundle.min.js"></script>
+
+  </body>
 </html>

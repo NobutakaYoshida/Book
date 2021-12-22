@@ -40,7 +40,6 @@ public class BookController {
 	public String index(Model model) {
 		List<Book> bookList = bookRepository.findAll();
 		model.addAttribute("bookList", bookList);
-		System.out.println(bookList);
 		return "userview/home";
 	}
 	
@@ -133,6 +132,60 @@ public class BookController {
 	public String detail(Integer id, Model model) {
 		List<Book> bookList = bookRepository.findById(id);
 		model.addAttribute("bookList", bookList);
+		
+		for (Book book : bookList) {
+			String bookStyle = book.getBookStyle().toString();
+			String bigGenre = book.getBigGenre().toString();
+			String smallGenre = book.getSmallGenre().toString();
+			String snsPush = book.getSnsPush().toString();
+			
+			if(bookStyle.equals("1")) {
+				bookStyle = "単行本";
+			} else if(bookStyle.equals("2")) {
+				bookStyle = "新書";
+			} else if(bookStyle.equals("3")) {
+				bookStyle = "文庫";
+			} else if(bookStyle.equals("4")) {
+				bookStyle = "マンガ";
+			}
+			model.addAttribute("bookStyle", bookStyle);
+			
+			if(bigGenre.equals("1")) {
+				bigGenre = "自己啓発";
+			} else if(bigGenre.equals("2")) {
+				bigGenre = "小説";
+			} else if(bigGenre.equals("3")) {
+				bigGenre = "評論";
+			}
+			model.addAttribute("bigGenre", bigGenre);
+			
+			if(smallGenre.equals("1")) {
+				smallGenre = "株";
+			} else if(smallGenre.equals("2")) {
+				smallGenre = "ミステリー";
+			} else if(smallGenre.equals("3")) {
+				smallGenre = "恋愛";
+			} else if(smallGenre.equals("4")) {
+				smallGenre = "マーケティング";
+			} else if(smallGenre.equals("5")) {
+				smallGenre = "歴史";
+			} else if(smallGenre.equals("6")) {
+				smallGenre = "マネジメント";
+			} else if(smallGenre.equals("7")) {
+				smallGenre = "語学";
+			} else if(smallGenre.equals("8")) {
+				smallGenre = "文学";
+			}
+			model.addAttribute("smallGenre", smallGenre);
+			
+			if(snsPush.equals("1")) {
+				snsPush = "未投稿";
+			} else if(snsPush.equals("2")) {
+				snsPush = "投稿済";
+			}
+			model.addAttribute("snsPush", snsPush);
+		}
+		
 		return "userview/bookDetail";
 	}
 	
