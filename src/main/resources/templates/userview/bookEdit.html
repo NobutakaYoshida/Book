@@ -46,22 +46,17 @@
 	<!-- 左側画像エリア -->
 	<div class="col-sm-3">
 		<img th:src="@{'/image/' + ${book.image}}" width="100%">
+			<div style="margin-top: 50px; text-align: center;">↓　写真を変更する　↓<br>
+				<input class="form-control" type="file" id="image" name="image" style="margin-top: 10px;">
+			</div>
 	</div>
 		
 	<!-- 右側のタイトル・コメントエリア -->
 	<div class="col-sm-6 p-5">
-		<h2 th:text="${book.title}" style="white-space: pre-wrap;">商品名</h2>
+		<input type="text" name="title" th:value="${book.title}" style="white-space: pre-wrap; width: 100%;">
 		<hr />
-		<div th:text="${book.comment}" style="white-space: pre-wrap;">商品説明文を追加</div>
-		
-		<div style="text-align: right;">
-			<a th:href="@{'/book/edit?id=' + ${book.id}}">
-				<button type="button" class="btn btn-outline-info">内容を修正</button>
-			</a>
-		</div>
-	
+		<textarea name="comment" rows=10 th:text="${book.comment}" style="white-space: pre-wrap; width: 100%;"></textarea>
 	</div>
-	
 	
 </div>
 
@@ -88,23 +83,40 @@
 												<tbody>
 													<tr>
 														<th class="a-color-secondary a-size-base prodDetSectionEntry"> 著者 </th>
-															<td class="a-size-base prodDetAttrValue" th:text="${book.author}"> &lrm;Siroca(シロカ) </td>
+															<td class="a-size-base prodDetAttrValue">
+																<input type="text" name="author" th:value="${book.author}" style="white-space: pre-wrap; width: 100%;">
+															</td>
 													</tr>
 													<tr>
 														<th class="a-color-secondary a-size-base prodDetSectionEntry"> 読了日 </th>
-															<td class="a-size-base prodDetAttrValue" th:text="${#dates.format(book.finishedDate,'yyyy年MM月dd日')}"> &lrm;Siroca(シロカ) </td>
+															<td class="a-size-base prodDetAttrValue">
+																<input type="text" name="finishedDate" th:value="${#dates.format(book.finishedDate,'yyyy年MM月dd日')}" style="white-space: pre-wrap; width: 100%;">
+															</td>
 													</tr>
 													<tr>
 														<th class="a-color-secondary a-size-base prodDetSectionEntry"> 出版元 </th>
-															<td class="a-size-base prodDetAttrValue" th:text="${book.publisher}"> &lrm;Siroca(シロカ) </td>
+															<td class="a-size-base prodDetAttrValue">
+																<input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="publisher" name="publisher" th:value="${book.publisher}">
+																	<datalist id="datalistOptions">
+											  							<option value="KADOKAWA">
+											  							<option value="新潮社">
+											  							<option value="集英社">
+											  							<option value="幻冬舎">
+											  							<option value="講談社">
+																	</datalist>
+															</td>
 													</tr>
 													<tr>
 														<th class="a-color-secondary a-size-base prodDetSectionEntry"> 価格 </th>
-															<td class="a-size-base prodDetAttrValue" th:text="${book.pages} + ' 円'"> &lrm;Siroca(シロカ) </td>
+															<td class="a-size-base prodDetAttrValue">
+																<input type="text" name="price" th:value="${book.price}" style="white-space: pre-wrap; width: 90%;"> 円
+															</td>
 													</tr>
 													<tr>
 														<th class="a-color-secondary a-size-base prodDetSectionEntry"> ページ数 </th>
-															<td class="a-size-base prodDetAttrValue" th:text="${book.price} + ' ページ'"> &lrm;Siroca(シロカ) </td>
+															<td class="a-size-base prodDetAttrValue">
+																<input type="text" name="pages" th:value="${book.pages}" style="white-space: pre-wrap; width: 85%;"> ページ
+															</td>
 													</tr>
 												</tbody>
 											</table>
@@ -133,19 +145,56 @@
 											<tbody>
 												<tr>
 													<th class="a-color-secondary a-size-base prodDetSectionEntry"> 本の形式 </th>
-														<td class="a-size-base prodDetAttrValue" th:text="${bookStyle}"> B09BTTPTVD </td>
+														<td class="a-size-base prodDetAttrValue">
+															<select class="form-select" aria-label="Default select example" id="bookStyle" name="bookStyle">
+											  					<option th:text="${bookStyle}" th:value="${book.bookStyle}">book style</option>
+											  					<option>----------</option>
+											  					<option value="1">単行本</option>
+											  					<option value="2">新書</option>
+											  					<option value="3">文庫</option>
+											  					<option value="4">マンガ</option>
+															</select>
+														</td>
 												</tr>
 												<tr>
 													<th class="a-color-secondary a-size-base prodDetSectionEntry"> 大ジャンル </th>
-														<td class="a-size-base prodDetAttrValue" th:text="${bigGenre}"> B09BTTPTVD </td>
+														<td class="a-size-base prodDetAttrValue">
+															<select class="form-select" aria-label="Default select example" id="bigGenre" name="bigGenre">
+											  					<option th:text="${bigGenre}" th:value="${book.bigGenre}">bigGenre</option>
+											  					<option>----------</option>
+											  					<option value="1">自己啓発</option>
+											  					<option value="2">小説</option>
+											  					<option value="3">評論</option>
+															</select>
+														</td>
 												</tr>
 												<tr>
 													<th class="a-color-secondary a-size-base prodDetSectionEntry"> 小ジャンル </th>
-														<td class="a-size-base prodDetAttrValue" th:text="${smallGenre}"> B09BTTPTVD </td>
+														<td class="a-size-base prodDetAttrValue">
+															<select class="form-select" aria-label="Default select example" id="smallGenre" name="smallGenre">
+											  					<option th:text="${smallGenre}" th:value="${book.smallGenre}">smallGenre</option>
+											  					<option>----------</option>
+											  					<option value="1">株</option>
+											  					<option value="2">ミステリー</option>
+											  					<option value="3">恋愛</option>
+											  					<option value="4">マーケティング</option>
+											  					<option value="5">歴史</option>
+											  					<option value="6">マネジメント</option>
+											  					<option value="7">語学</option>
+											  					<option value="8">文学</option>
+															</select>
+														</td>
 												</tr>
 												<tr>
 													<th class="a-color-secondary a-size-base prodDetSectionEntry"> SNS投稿状況 </th>
-														<td class="a-size-base prodDetAttrValue" th:text="${snsPush}"> B09BTTPTVD </td>
+														<td class="a-size-base prodDetAttrValue">
+										  					<select class="form-select" aria-label="Default select example" id="snsPush" name="snsPush">
+											  					<option th:text="${snsPush}" th:value="${book.snsPush}">snsPush</option>
+											  					<option>----------</option>
+											  					<option value="1">未投稿</option>
+											  					<option value="2">投稿済</option>
+											  				</select>
+														</td>
 												</tr>
 											</tbody>
 										</table>
